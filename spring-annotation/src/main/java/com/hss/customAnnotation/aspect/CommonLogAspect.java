@@ -1,6 +1,6 @@
 package com.hss.customAnnotation.aspect;
 
-import com.hss.customAnnotation.anntation.LogAnnotation;
+import com.hss.anntation.LogAnnotation;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
 public class CommonLogAspect {
 	/*通过@Pointcut指定切入点 ，这里指定的切入点为LogAnnotation注解类型，也就是
       被@LogAnnotation注解修饰的方法，进入该切入点*/
-	@Pointcut(value = "@annotation(com.hss.customAnnotation.anntation.LogAnnotation)")
+	@Pointcut(value = "@annotation(com.hss.anntation.LogAnnotation)")
 	private void pointcut() {
 
 	}

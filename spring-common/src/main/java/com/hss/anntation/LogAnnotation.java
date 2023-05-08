@@ -1,4 +1,4 @@
-package com.hss.customAnnotation.anntation;
+package com.hss.anntation;
 
 import java.lang.annotation.*;
 

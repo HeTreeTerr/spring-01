@@ -2,7 +2,7 @@ package com.hss.config;
 
 import com.hss.config.typeFilter.MyTypeFilter;
 import com.hss.controller.HelloController;
-import com.hss.customAnnotation.anntation.LogAnnotation;
+import com.hss.anntation.LogAnnotation;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Configuration;

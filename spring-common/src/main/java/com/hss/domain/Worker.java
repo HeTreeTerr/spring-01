@@ -1,6 +1,6 @@
 package com.hss.domain;
 
-import com.hss.customAnnotation.anntation.LogAnnotation;
+import com.hss.anntation.LogAnnotation;
 
 /**
  * 工人
