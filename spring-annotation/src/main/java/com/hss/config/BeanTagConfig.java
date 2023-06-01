@@ -2,6 +2,7 @@ package com.hss.config;
 
 import com.hss.config.aware.MyApplicationContextUtil;
 import com.hss.domain.Car;
+import com.hss.postprocessor.MyBeanDefinitionRegistryPostProcessor;
 import com.hss.postprocessor.MyBeanFactoryPostprocessor;
 import com.hss.postprocessor.MyBeanPostprocessor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -18,7 +19,8 @@ import org.springframework.context.annotation.Scope;
  *
  */
 @Configuration
-@Import(value = {MyBeanPostprocessor.class,MyBeanFactoryPostprocessor.class,MyApplicationContextUtil.class})
+@Import(value = {MyBeanPostprocessor.class,MyBeanFactoryPostprocessor.class,MyBeanDefinitionRegistryPostProcessor.class
+		,MyApplicationContextUtil.class})
 public class BeanTagConfig {
 
 	/**

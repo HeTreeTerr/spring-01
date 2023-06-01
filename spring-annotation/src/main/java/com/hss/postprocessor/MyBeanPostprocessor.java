@@ -4,6 +4,9 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
 /**
+ * BeanPostProcessor:
+ * bean后置处理器，bean创建对象初始化前后进行拦截工作的
+ *
  * postProcessBeforeInitialization
  * postProcessAfterInitialization
  * 分别在执行初始化方法前后执行

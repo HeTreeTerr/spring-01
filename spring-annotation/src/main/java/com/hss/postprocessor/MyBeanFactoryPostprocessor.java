@@ -1,43 +1,30 @@
 package com.hss.postprocessor;
 
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
-import org.springframework.beans.factory.support.BeanDefinitionRegistry;
-import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
-import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.stereotype.Component;
 
 /**
  * 1)BeanFactoryPostProcessor
  * BeanFactory后置处理器
- * bean 工厂初始化完成后调用
+ * 在BeanFactory标准初始化之后调用，所有的bean定义已经被保存加载到beanFactory，但是bean的实例还未创建
  * 支持自定义扩展
  *
- * 2)BeanDefinitionRegistryPostProcessor
- * 继承了BeanFactoryPostProcessor
- * 在BeanDefinition加载完成，但还没有实例化bean时触发
- * 在BeanFactoryPostProcessor.postProcessBeanFactory之前执行
- * 实现对BeanDefinition的增删改查
+ * 源码：
+ * 1）、ioc容器创建对象
+ * 2）、invokeBeanFactoryPostProcessors(beanFactory);执行BeanFactoryPostProcessor；
+ * 		如何找到所有的BeanFactoryPostProcessor并执行它们的方法
+ * 			1）、直接在BeanFactory中找到所有类型是BeanFactoryPostProcessor的组件，并执行它们的方法
+ * 			2）、在初始化创建其他组件之前执行
  */
 @Component
-public class MyBeanFactoryPostprocessor implements BeanFactoryPostProcessor,BeanDefinitionRegistryPostProcessor {
+public class MyBeanFactoryPostprocessor implements BeanFactoryPostProcessor {
 
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
 
-//		GenericBeanDefinition indexService = (GenericBeanDefinition)beanFactory.getBeanDefinition("indexService");
-//		indexService.setBeanClass(UserService.class);
-		System.out.println("CLASS:HssBeanFactoryPostprocessor,METHOD:postProcessBeanFactory is running...");
+		System.out.println("CLASS:MyBeanFactoryPostprocessor,METHOD:postProcessBeanFactory is running...");
 	}
 
-	@Override
-	public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
-		//增加bean定义
-		BeanDefinition bd = new GenericBeanDefinition();
-		bd.setBeanClassName("com.hss.domain.Address");
-		registry.registerBeanDefinition("address",bd);
-		System.out.println("CLASS:HssBeanFactoryPostprocessor,METHOD:postProcessBeanDefinitionRegistry is running...");
-	}
 }
