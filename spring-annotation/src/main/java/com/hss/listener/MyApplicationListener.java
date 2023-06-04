@@ -2,6 +2,7 @@ package com.hss.listener;
 
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.EventListener;
 
 /**
  * <p>
@@ -32,6 +33,14 @@ import org.springframework.context.ApplicationListener;
  *      //将listener注册到applicationEventMulticaster中
  *      getApplicationEventMulticaster().addApplicationListenerBean(listenerBeanName);
  *
+ * @EventListener:
+ *      EventListenerMethodProcessor implements SmartInitializingSingleton, ApplicationContextAware
+ * 重心：SmartInitializingSingleton -> afterSingletonsInstantiated();
+ *      1）、创建容器对象:refresh();
+ *      2）、finishBeanFactoryInitialization(beanFactory);初始化生下的单实例bean;
+ *          1）、先创建所有的单实例bean:getBean();
+ *          2）、获取所有创建好的单实例bean，判断是否是SmartInitializingSingleton类型的；
+ *              所过是就调用afterSingletonsInstantiated();
  * </p>
  *
  * @author Hss
@@ -45,6 +54,11 @@ public class MyApplicationListener implements ApplicationListener<ApplicationEve
      */
     @Override
     public void onApplicationEvent(ApplicationEvent event) {
-        System.out.println("收到事件：" + event);
+        System.out.println("onApplicationEvent...收到事件：" + event);
+    }
+
+    @EventListener
+    public void eventListenerTag(ApplicationEvent event){
+        System.out.println("eventListenerTag...收到事件：" + event);
     }
 }
