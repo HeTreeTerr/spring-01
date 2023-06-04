@@ -6,7 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 /**
  * <p>
- * spring 时间监听器基本使用
+ * spring 事件监听器基本使用
  * </p>
  *
  * @author Hss

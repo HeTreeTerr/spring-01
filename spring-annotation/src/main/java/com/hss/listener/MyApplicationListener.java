@@ -15,6 +15,23 @@ import org.springframework.context.ApplicationListener;
  *  3）、只要容器中有相关的事件发布，我们就能监听到这个事件；
  *      ContextRefreshedEvent：容器刷新完成（所有bean都完全创建）会发布这个事件；
  *      ContextClosedEvent：关闭容器会发布这个事件
+ *
+ * 原理
+ * 事件多播器（派发器）
+ * 1）、创建容器对象:refresh();
+ * 2）、initApplicationEventMulticaster();初始化applicationEventMulticaster;
+ *      1）、先去容器中找有没有id="applicationEventMulticaster"的组件；
+ *      2）、如果没有this.applicationEventMulticaster = new SimpleApplicationEventMulticaster(beanFactory);
+ *          并且加入到容器中，我们就可以在其他组件中派发时间，自动注入到这个applicationEventMulticaster;
+ *
+ * 容器中有哪些监听器
+ * 1）、创建容器对象:refresh();
+ * 2）、registerListeners();
+ *      从容器中拿到所有的监听器，把他们注册到applicationEventMulticaster中;
+ *      String[] listenerBeanNames = getBeanNamesForType(ApplicationListener.class, true, false);
+ *      //将listener注册到applicationEventMulticaster中
+ *      getApplicationEventMulticaster().addApplicationListenerBean(listenerBeanName);
+ *
  * </p>
  *
  * @author Hss
